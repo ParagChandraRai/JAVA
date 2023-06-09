@@ -1,0 +1,51 @@
+CREATE TABLE Authors (
+  author_id INT PRIMARY KEY,
+  first_name VARCHAR(50),
+  last_name VARCHAR(50)
+);
+
+CREATE TABLE Books (
+  book_id INT PRIMARY KEY,
+  title VARCHAR(100),
+  year INT,
+  isbn VARCHAR(20),
+  author_id INT,
+  FOREIGN KEY (author_id) REFERENCES Authors(author_id)
+);
+INSERT INTO Authors (author_id, first_name, last_name)
+VALUES
+  (101, 'John', 'Smith'),
+  (102, 'Jane', 'Doe'),
+  (103, 'Michael', 'Johnson'),
+  (104, 'Emily', 'Wilson');
+
+INSERT INTO Books (book_id, title, year, isbn, author_id)
+VALUES
+  (201, 'The Book of Secrets', 2010, '9781234567890', 101),
+  (202, 'Journey to the Unknown', 2015, '9780987654321', 102),
+  (203, 'The Power of Now', 2005, '9789876543210', 101),
+  (204, 'The Alchemist', 1988, '9780123456789', 103),
+  (205, 'Pride and Prejudice', 1813, '9785432109876', 104),
+  (206, 'The Great Gatsby', 1925, '9784567890123', 104);
+
+
+A
+SELECT * FROM Authors;
+
+B
+
+SELECT a.last_name, a.first_name, b.title, b.year, b.isbn
+FROM Authors a
+JOIN Books b ON a.author_id = b.author_id
+WHERE a.author_id = 101
+ORDER BY a.last_name, a.first_name;
+
+c.
+SELECT a.last_name, a.first_name
+FROM Authors a
+JOIN Books b ON a.author_id = b.author_id
+WHERE b.title = 'The Power of Now'
+ORDER BY a.last_name, a.first_name;
+D
+SELECT * FROM Books WHERE year = 2010;
+
